@@ -1,0 +1,50 @@
+/*
+  ## Optional
+ */
+struct Movie {
+  var name: String
+  var releaseYear: Int
+
+  func toString() -> String {
+      return "名前: \(name) 公開年: \(name)"
+  }
+}
+
+let first = Movie(name: "ターミネーター2", releaseYear: 1991)
+let second = Movie(name: "マルコムX", releaseYear: 1992)
+let third = Movie(name: "ライオン・キング", releaseYear: 1994)
+let movies = [first, second, third]
+print(movies.map { $0.toString() })
+
+
+/*
+  ## 受賞(award)を追加
+ */
+struct Movie2 {
+  var name: String
+  var releaseYear: Int
+  var award: String? // Optional
+
+  // optinalをunwrapしない
+  func toString() -> String {
+    return "名前: \(name) 公開年: \(name) 受賞: \(award)"
+  }
+
+  // unwrap: Nil Coalescing
+  func toString2() -> String {
+      return "名前: \(name) 公開年: \(name) 受賞: \(award ?? "")"
+  }
+
+  // unwrap: force unwrap
+  func toString3() -> String {
+      return "名前: \(name) 公開年: \(name) 受賞: \(award!)"
+  }
+}
+
+let first2 = Movie2(name: "ターミネーター2", releaseYear: 1991, award: "アカデミー賞")
+let second2 = Movie2(name: "マルコムX", releaseYear: 1992)
+let third2 = Movie2(name: "ライオン・キング", releaseYear: 1994)
+let movies2 = [first2, second2, third2]
+print(movies2.map { $0.toString() }) // Optionalをunwrapしていない
+print(movies2.map { $0.toString2() }) // Optionalをunwrap Nil Coalescing
+//print(movies2.map { $0.toString3() }) // Optionalをunwrapしていない
